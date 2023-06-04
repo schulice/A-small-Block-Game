@@ -1,0 +1,1 @@
+This is a simple example to build a small game via SDL2-lib.
