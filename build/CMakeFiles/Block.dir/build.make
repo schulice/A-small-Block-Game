@@ -73,15 +73,15 @@ CMakeFiles/Block.dir/src/main.cpp.o: CMakeFiles/Block.dir/flags.make
 CMakeFiles/Block.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/Block.dir/src/main.cpp.o: CMakeFiles/Block.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Block.dir/src/main.cpp.o"
-	/usr/bin/clang++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Block.dir/src/main.cpp.o -MF CMakeFiles/Block.dir/src/main.cpp.o.d -o CMakeFiles/Block.dir/src/main.cpp.o -c /home/schelice/Code_Project/Block_clangd/src/main.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Block.dir/src/main.cpp.o -MF CMakeFiles/Block.dir/src/main.cpp.o.d -o CMakeFiles/Block.dir/src/main.cpp.o -c /home/schelice/Code_Project/Block_clangd/src/main.cpp
 
 CMakeFiles/Block.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Block.dir/src/main.cpp.i"
-	/usr/bin/clang++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/schelice/Code_Project/Block_clangd/src/main.cpp > CMakeFiles/Block.dir/src/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/schelice/Code_Project/Block_clangd/src/main.cpp > CMakeFiles/Block.dir/src/main.cpp.i
 
 CMakeFiles/Block.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Block.dir/src/main.cpp.s"
-	/usr/bin/clang++-15 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/schelice/Code_Project/Block_clangd/src/main.cpp -o CMakeFiles/Block.dir/src/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/schelice/Code_Project/Block_clangd/src/main.cpp -o CMakeFiles/Block.dir/src/main.cpp.s
 
 # Object files for target Block
 Block_OBJECTS = \

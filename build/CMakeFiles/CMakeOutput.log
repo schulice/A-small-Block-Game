@@ -1,6 +1,6 @@
 The system is: Linux - 5.15.90.1-microsoft-standard-WSL2 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /usr/bin/clang-15 
+Compiler: /usr/bin/clang 
 Build flags: 
 Id flags:  
 
@@ -13,7 +13,7 @@ Compilation of the C compiler identification source "CMakeCCompilerId.c" produce
 The C compiler identification is Clang, found in "/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/3.22.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /usr/bin/clang++-15 
+Compiler: /usr/bin/clang++ 
 Build flags: 
 Id flags:  
 
@@ -28,11 +28,11 @@ The CXX compiler identification is Clang, found in "/home/schelice/Code_Project/
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d3538/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d3538.dir/build.make CMakeFiles/cmTC_d3538.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c2a94/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c2a94.dir/build.make CMakeFiles/cmTC_c2a94.dir/build
 gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o
-/usr/bin/clang-15   -v -MD -MT CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
-Ubuntu clang version 15.0.7
+Building C object CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o
+/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+Ubuntu clang version 14.0.0-1ubuntu1
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
@@ -41,21 +41,21 @@ Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
  (in-process)
- "/usr/lib/llvm-15/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-15/lib/clang/15.0.7 -dependency-file CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-15/lib/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
-clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-pc-linux-gnu
+ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu
 ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
 #include <...> search starts here:
- /usr/lib/llvm-15/lib/clang/15.0.7/include
+ /usr/lib/llvm-14/lib/clang/14.0.0/include
  /usr/local/include
  /usr/include/x86_64-linux-gnu
  /usr/include
 End of search list.
-Linking C executable cmTC_d3538
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3538.dir/link.txt --verbose=1
-/usr/bin/clang-15  -v -rdynamic CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -o cmTC_d3538 
-Ubuntu clang version 15.0.7
+Linking C executable cmTC_c2a94
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2a94.dir/link.txt --verbose=1
+/usr/bin/clang  -v -rdynamic CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -o cmTC_c2a94 
+Ubuntu clang version 14.0.0-1ubuntu1
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
@@ -63,7 +63,7 @@ Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d3538 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o
+ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c2a94 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o
 gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
 
 
@@ -71,27 +71,27 @@ gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMak
 Parsed C implicit include dir info from above output: rv=done
   found start of include info
   found start of implicit include info
-    add: [/usr/lib/llvm-15/lib/clang/15.0.7/include]
+    add: [/usr/lib/llvm-14/lib/clang/14.0.0/include]
     add: [/usr/local/include]
     add: [/usr/include/x86_64-linux-gnu]
     add: [/usr/include]
   end of search list found
-  collapse include dir [/usr/lib/llvm-15/lib/clang/15.0.7/include] ==> [/usr/lib/llvm-15/lib/clang/15.0.7/include]
+  collapse include dir [/usr/lib/llvm-14/lib/clang/14.0.0/include] ==> [/usr/lib/llvm-14/lib/clang/14.0.0/include]
   collapse include dir [/usr/local/include] ==> [/usr/local/include]
   collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
   collapse include dir [/usr/include] ==> [/usr/include]
-  implicit include dirs: [/usr/lib/llvm-15/lib/clang/15.0.7/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+  implicit include dirs: [/usr/lib/llvm-14/lib/clang/14.0.0/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld\.lld-15|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d3538/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d3538.dir/build.make CMakeFiles/cmTC_d3538.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c2a94/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c2a94.dir/build.make CMakeFiles/cmTC_c2a94.dir/build]
   ignore line: [gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/clang-15   -v -MD -MT CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
-  ignore line: [Ubuntu clang version 15.0.7]
+  ignore line: [Building C object CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [Ubuntu clang version 14.0.0-1ubuntu1]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
@@ -102,21 +102,21 @@ Parsed C implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/lib/llvm-15/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-15/lib/clang/15.0.7 -dependency-file CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-15/lib/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
-  ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-pc-linux-gnu]
+  ignore line: [ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu]
   ignore line: [ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
   ignore line: [#include <...> search starts here:]
-  ignore line: [ /usr/lib/llvm-15/lib/clang/15.0.7/include]
+  ignore line: [ /usr/lib/llvm-14/lib/clang/14.0.0/include]
   ignore line: [ /usr/local/include]
   ignore line: [ /usr/include/x86_64-linux-gnu]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking C executable cmTC_d3538]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3538.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang-15  -v -rdynamic CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -o cmTC_d3538 ]
-  ignore line: [Ubuntu clang version 15.0.7]
+  ignore line: [Linking C executable cmTC_c2a94]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2a94.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang  -v -rdynamic CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -o cmTC_c2a94 ]
+  ignore line: [Ubuntu clang version 14.0.0-1ubuntu1]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
@@ -126,7 +126,7 @@ Parsed C implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  link line: [ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d3538 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c2a94 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-export-dynamic] ==> ignore
@@ -140,7 +140,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_d3538] ==> ignore
+    arg [cmTC_c2a94] ==> ignore
     arg [/lib/x86_64-linux-gnu/Scrt1.o] ==> obj [/lib/x86_64-linux-gnu/Scrt1.o]
     arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
@@ -150,9 +150,10 @@ Parsed C implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/llvm-14/bin/../lib] ==> dir [/usr/lib/llvm-14/bin/../lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_d3538.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_c2a94.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -172,22 +173,23 @@ Parsed C implicit link information from above output:
   collapse library dir [/lib/../lib64] ==> [/lib64]
   collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/llvm-14/bin/../lib] ==> [/usr/lib/llvm-14/lib]
   collapse library dir [/lib] ==> [/lib]
   collapse library dir [/usr/lib] ==> [/usr/lib]
   implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
   implicit objs: [/lib/x86_64-linux-gnu/Scrt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/lib/x86_64-linux-gnu/crtn.o]
-  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/lib;/usr/lib]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib/llvm-14/lib;/lib;/usr/lib]
   implicit fwks: []
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_28d2d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_28d2d.dir/build.make CMakeFiles/cmTC_28d2d.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e4893/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e4893.dir/build.make CMakeFiles/cmTC_e4893.dir/build
 gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/clang++-15   -v -MD -MT CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
-Ubuntu clang version 15.0.7
+Building CXX object CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Ubuntu clang version 14.0.0-1ubuntu1
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
@@ -196,8 +198,8 @@ Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
  (in-process)
- "/usr/lib/llvm-15/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-15/lib/clang/15.0.7 -dependency-file CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward -internal-isystem /usr/lib/llvm-15/lib/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
-clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-pc-linux-gnu
+ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu
 ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
@@ -205,15 +207,15 @@ ignoring nonexistent directory "/include"
  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11
  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11
  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward
- /usr/lib/llvm-15/lib/clang/15.0.7/include
+ /usr/lib/llvm-14/lib/clang/14.0.0/include
  /usr/local/include
  /usr/include/x86_64-linux-gnu
  /usr/include
 End of search list.
-Linking CXX executable cmTC_28d2d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28d2d.dir/link.txt --verbose=1
-/usr/bin/clang++-15  -v -rdynamic CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_28d2d 
-Ubuntu clang version 15.0.7
+Linking CXX executable cmTC_e4893
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4893.dir/link.txt --verbose=1
+/usr/bin/clang++  -v -rdynamic CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e4893 
+Ubuntu clang version 14.0.0-1ubuntu1
 Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/bin
@@ -221,7 +223,7 @@ Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
- "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_28d2d /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o
+ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_e4893 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o
 gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
 
 
@@ -232,7 +234,7 @@ Parsed CXX implicit include dir info from above output: rv=done
     add: [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11]
     add: [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11]
     add: [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward]
-    add: [/usr/lib/llvm-15/lib/clang/15.0.7/include]
+    add: [/usr/lib/llvm-14/lib/clang/14.0.0/include]
     add: [/usr/local/include]
     add: [/usr/include/x86_64-linux-gnu]
     add: [/usr/include]
@@ -240,22 +242,22 @@ Parsed CXX implicit include dir info from above output: rv=done
   collapse include dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11] ==> [/usr/include/c++/11]
   collapse include dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11] ==> [/usr/include/x86_64-linux-gnu/c++/11]
   collapse include dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward] ==> [/usr/include/c++/11/backward]
-  collapse include dir [/usr/lib/llvm-15/lib/clang/15.0.7/include] ==> [/usr/lib/llvm-15/lib/clang/15.0.7/include]
+  collapse include dir [/usr/lib/llvm-14/lib/clang/14.0.0/include] ==> [/usr/lib/llvm-14/lib/clang/14.0.0/include]
   collapse include dir [/usr/local/include] ==> [/usr/local/include]
   collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
   collapse include dir [/usr/include] ==> [/usr/include]
-  implicit include dirs: [/usr/include/c++/11;/usr/include/x86_64-linux-gnu/c++/11;/usr/include/c++/11/backward;/usr/lib/llvm-15/lib/clang/15.0.7/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+  implicit include dirs: [/usr/include/c++/11;/usr/include/x86_64-linux-gnu/c++/11;/usr/include/c++/11/backward;/usr/lib/llvm-14/lib/clang/14.0.0/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
 
 
 Parsed CXX implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld\.lld-15|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_28d2d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_28d2d.dir/build.make CMakeFiles/cmTC_28d2d.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e4893/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e4893.dir/build.make CMakeFiles/cmTC_e4893.dir/build]
   ignore line: [gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/clang++-15   -v -MD -MT CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Ubuntu clang version 15.0.7]
+  ignore line: [Building CXX object CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Ubuntu clang version 14.0.0-1ubuntu1]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
@@ -266,8 +268,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/lib/llvm-15/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-15/lib/clang/15.0.7 -dependency-file CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward -internal-isystem /usr/lib/llvm-15/lib/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-pc-linux-gnu]
+  ignore line: [ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu]
   ignore line: [ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
@@ -275,15 +277,15 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11]
   ignore line: [ /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11]
   ignore line: [ /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/backward]
-  ignore line: [ /usr/lib/llvm-15/lib/clang/15.0.7/include]
+  ignore line: [ /usr/lib/llvm-14/lib/clang/14.0.0/include]
   ignore line: [ /usr/local/include]
   ignore line: [ /usr/include/x86_64-linux-gnu]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking CXX executable cmTC_28d2d]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28d2d.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang++-15  -v -rdynamic CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_28d2d ]
-  ignore line: [Ubuntu clang version 15.0.7]
+  ignore line: [Linking CXX executable cmTC_e4893]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4893.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang++  -v -rdynamic CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e4893 ]
+  ignore line: [Ubuntu clang version 14.0.0-1ubuntu1]
   ignore line: [Target: x86_64-pc-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/bin]
@@ -293,7 +295,7 @@ Parsed CXX implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
-  link line: [ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_28d2d /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -export-dynamic -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_e4893 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-export-dynamic] ==> ignore
@@ -307,7 +309,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_28d2d] ==> ignore
+    arg [cmTC_e4893] ==> ignore
     arg [/lib/x86_64-linux-gnu/Scrt1.o] ==> obj [/lib/x86_64-linux-gnu/Scrt1.o]
     arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
     arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
@@ -317,9 +319,10 @@ Parsed CXX implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/llvm-14/bin/../lib] ==> dir [/usr/lib/llvm-14/bin/../lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_28d2d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_e4893.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -337,24 +340,25 @@ Parsed CXX implicit link information from above output:
   collapse library dir [/lib/../lib64] ==> [/lib64]
   collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/llvm-14/bin/../lib] ==> [/usr/lib/llvm-14/lib]
   collapse library dir [/lib] ==> [/lib]
   collapse library dir [/usr/lib] ==> [/usr/lib]
   implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
   implicit objs: [/lib/x86_64-linux-gnu/Scrt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/lib/x86_64-linux-gnu/crtn.o]
-  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/lib;/usr/lib]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib/llvm-14/lib;/lib;/usr/lib]
   implicit fwks: []
 
 
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_65102/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_65102.dir/build.make CMakeFiles/cmTC_65102.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_920c0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_920c0.dir/build.make CMakeFiles/cmTC_920c0.dir/build
 gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_65102.dir/CheckIncludeFile.c.o
-/usr/bin/clang-15    -MD -MT CMakeFiles/cmTC_65102.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_65102.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_65102.dir/CheckIncludeFile.c.o -c /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_65102
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65102.dir/link.txt --verbose=1
-/usr/bin/clang-15 -rdynamic CMakeFiles/cmTC_65102.dir/CheckIncludeFile.c.o -o cmTC_65102 
+Building C object CMakeFiles/cmTC_920c0.dir/CheckIncludeFile.c.o
+/usr/bin/clang    -MD -MT CMakeFiles/cmTC_920c0.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_920c0.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_920c0.dir/CheckIncludeFile.c.o -c /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_920c0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_920c0.dir/link.txt --verbose=1
+/usr/bin/clang -rdynamic CMakeFiles/cmTC_920c0.dir/CheckIncludeFile.c.o -o cmTC_920c0 
 gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
 
 
@@ -362,13 +366,13 @@ gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMak
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
 Change Dir: /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1a71e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1a71e.dir/build.make CMakeFiles/cmTC_1a71e.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_bd42d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_bd42d.dir/build.make CMakeFiles/cmTC_bd42d.dir/build
 gmake[1]: Entering directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1a71e.dir/src.c.o
-/usr/bin/clang-15 -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_1a71e.dir/src.c.o -MF CMakeFiles/cmTC_1a71e.dir/src.c.o.d -o CMakeFiles/cmTC_1a71e.dir/src.c.o -c /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_1a71e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a71e.dir/link.txt --verbose=1
-/usr/bin/clang-15 -rdynamic CMakeFiles/cmTC_1a71e.dir/src.c.o -o cmTC_1a71e 
+Building C object CMakeFiles/cmTC_bd42d.dir/src.c.o
+/usr/bin/clang -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_bd42d.dir/src.c.o -MF CMakeFiles/cmTC_bd42d.dir/src.c.o.d -o CMakeFiles/cmTC_bd42d.dir/src.c.o -c /home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_bd42d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bd42d.dir/link.txt --verbose=1
+/usr/bin/clang -rdynamic CMakeFiles/cmTC_bd42d.dir/src.c.o -o cmTC_bd42d 
 gmake[1]: Leaving directory '/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/CMakeTmp'
 
 

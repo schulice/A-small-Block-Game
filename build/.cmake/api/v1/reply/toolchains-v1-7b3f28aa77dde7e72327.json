@@ -10,7 +10,7 @@
 				{
 					"includeDirectories" : 
 					[
-						"/usr/lib/llvm-15/lib/clang/15.0.7/include",
+						"/usr/lib/llvm-14/lib/clang/14.0.0/include",
 						"/usr/local/include",
 						"/usr/include/x86_64-linux-gnu",
 						"/usr/include"
@@ -22,6 +22,7 @@
 						"/lib/x86_64-linux-gnu",
 						"/lib64",
 						"/usr/lib/x86_64-linux-gnu",
+						"/usr/lib/llvm-14/lib",
 						"/lib",
 						"/usr/lib"
 					],
@@ -35,8 +36,8 @@
 						"gcc_s"
 					]
 				},
-				"path" : "/usr/bin/clang-15",
-				"version" : "15.0.7"
+				"path" : "/usr/bin/clang",
+				"version" : "14.0.0"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 
@@ -56,7 +57,7 @@
 						"/usr/include/c++/11",
 						"/usr/include/x86_64-linux-gnu/c++/11",
 						"/usr/include/c++/11/backward",
-						"/usr/lib/llvm-15/lib/clang/15.0.7/include",
+						"/usr/lib/llvm-14/lib/clang/14.0.0/include",
 						"/usr/local/include",
 						"/usr/include/x86_64-linux-gnu",
 						"/usr/include"
@@ -68,6 +69,7 @@
 						"/lib/x86_64-linux-gnu",
 						"/lib64",
 						"/usr/lib/x86_64-linux-gnu",
+						"/usr/lib/llvm-14/lib",
 						"/lib",
 						"/usr/lib"
 					],
@@ -83,8 +85,8 @@
 						"gcc"
 					]
 				},
-				"path" : "/usr/bin/clang++-15",
-				"version" : "15.0.7"
+				"path" : "/usr/bin/clang++",
+				"version" : "14.0.0"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 

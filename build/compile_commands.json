@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/schelice/Code_Project/Block_clangd/build",
-  "command": "/usr/bin/clang++-15  -isystem /usr/include/SDL2 -g -o CMakeFiles/Block.dir/src/main.cpp.o -c /home/schelice/Code_Project/Block_clangd/src/main.cpp",
+  "command": "/usr/bin/clang++  -isystem /usr/include/SDL2 -g -o CMakeFiles/Block.dir/src/main.cpp.o -c /home/schelice/Code_Project/Block_clangd/src/main.cpp",
   "file": "/home/schelice/Code_Project/Block_clangd/src/main.cpp"
 }
 ]
