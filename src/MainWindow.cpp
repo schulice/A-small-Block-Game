@@ -1,42 +1,24 @@
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
 #include "MainWindow.h"
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_haptic.h>
-#include <SDL2/SDL_hints.h>
-#include <SDL2/SDL_keyboard.h>
-#include <SDL2/SDL_keycode.h>
-#include <SDL2/SDL_log.h>
-#include <SDL2/SDL_rect.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_stdinc.h>
-#include <SDL2/SDL_timer.h>
-#include <SDL2/SDL_video.h>
-#include <SDL2/SDL_image.h>
-#include <bits/fs_fwd.h>
-#include <sys/types.h>
-#include <SDL2/SDL.h>
-#include <cinttypes>
-#include <cstdint>
-#include <cstdio>
-#include <functional>
-#include <new>
-#include <vector>
-#include <cstdlib> 
+#include "Button.cpp"
+#include "constant.cpp"
 #include <string>
-#include <unordered_map>
 #include <random>
 
 constexpr int EACH_BLOCK_WIDTH = 20;
 constexpr int FREAM_RAET = 1;
 constexpr int RESERVE_WIDTH = 400;
 
-SDL_KeyCode CHANGE_PRESS = SDLK_UP;
-SDL_KeyCode LEFT_PRESS = SDLK_LEFT;
-SDL_KeyCode RIGHT_PRESS = SDLK_RIGHT;
-SDL_KeyCode DOWN_PRESS = SDLK_DOWN;
-SDL_KeyCode PAUSE_PRESS = SDLK_p;
-uint32_t STYLE_SPEED = 1;
-std::string BACKGROUND_PATH = "resources/97517782_p0.jpg";
-const Uint32 SHAPE_COLOR[8] = {0x006aa84f, 0x00ff9900, 0x0033c38a, 0x005aa5ea, 0x000d406f, 0x008e7cc3, 0x00d9d9d9, 0x007f6000};
+extern SDL_KeyCode CHANGE_PRESS;
+extern SDL_KeyCode LEFT_PRESS;
+extern SDL_KeyCode RIGHT_PRESS;
+extern SDL_KeyCode DOWN_PRESS;
+extern SDL_KeyCode PAUSE_PRESS;
+extern uint32_t STYLE_SPEED;
+extern std::string BACKGROUND_PATH;
+extern const int LINE_SCORE[5];
+extern const Uint32 SHAPE_COLOR[8];
 
 class RandomGenerator {
 public:
@@ -51,63 +33,21 @@ private:
     std::mt19937 engine;
 };
 
-Shape::Shape(int _x, int _y, int _status, Uint32 _color){
-    x = _x;
-    y = _y;
-    status = _status;
-    color = _color;
-}
-Uint32 Shape::GetColor(){
-    return color;
-}
-bool Shape::Check(std::vector<std::vector<bool> > &play_ground){
-    bool is_empty = 1;
-    for (int i = 0; i < edge; i++){
-        for (int j = 0; j < edge; j++)
-            if (a[status][i][j] && play_ground[x+i][y+j]) {is_empty = 0; break;}
-    }
-    return is_empty;
-}
-bool Shape::Move(int _x, int _y, std::vector<std::vector<bool> > &play_ground){
-    bool sucess = 1;
-    x += _x;
-    y += _y;
-    if (!Check(play_ground)){
-        x -= _x;
-        y -= _y;
-        sucess = 0;
-    }
-    return sucess;
-}
-bool Shape::Change(std::vector<std::vector<bool> > &play_ground){
-    bool sucess = 1;
-    int status_before = status;
-    status++;
-    if (status == 4) status = 0;
-    if (!Check(play_ground)) status = status_before, sucess = 0;
-    return sucess;
-}
-bool Shape::Stick(std::vector<std::vector<bool> > &play_pool, std::vector<std::vector<Uint32> > &color_pool){
-    bool sucess = 1;
-    for (int i = 0; i < edge; i++)
-        for (int j = 0; j < edge; j++)
-            if (a[status][i][j]){
-                play_pool[x+i][y+j] = 1;
-                color_pool[x+i][y+j] = color;
-            }
-    return sucess;
-}
-
 MainWindow::MainWindow(){
     w = 0, h = 0;
 }
-MainWindow::MainWindow(int _w, int _h, std::string name){
+MainWindow::MainWindow(int _w, int _h, User _user){
     w = _w, h = _h;
-    user = {name, 0, 0, 0};
-    play_pool.resize(w+8, std::vector<bool>(h+8, true));
-    for (int i = 0; i < w; i++)
-        for (int j = 0; j < h; j++) play_pool[i+4][j] = false;
-    color_pool.resize(w+8, std::vector<Uint32>(h+8, 0x000000));
+    user = _user;
+    if (user.name == ""){
+        play_pool.resize(w+8, std::vector<bool>(h+8, true));
+        for (int i = 0; i < w; i++)
+            for (int j = 0; j < h + 4; j++) play_pool[i+4][j] = false;
+        color_pool.resize(w+8, std::vector<Uint32>(h+8, 0x000000));
+    }
+    else{
+        //DataLoad();//TODO dataload
+    }
 };
 bool MainWindow::WindowInit(){
     bool sucess = true;
@@ -177,6 +117,7 @@ void MainWindow::Close(){
     SDL_DestroyTexture( backgroundtexture );
 	backgroundtexture = NULL;
 	//Destroy window
+    SDL_RenderClear(mainrenderer);
 	SDL_DestroyRenderer( mainrenderer );
 	SDL_DestroyWindow( mainwindow );
 	mainrenderer = NULL;
@@ -215,7 +156,7 @@ void MainWindow::UpdateScreen(){
     if (hint_shape != nullptr) DrawShape(hint_shape);
     printf("finish active shape draw\n");
     //play pool draw
-    for (int j = 0; j < h; j++){
+    for (int j = 0; j < h+4; j++){
         for (int i = 0; i < w; i++){
             if (!play_pool[i+4][j]) continue;
             Uint32 color_tmp = color_pool[i+4][j];
@@ -240,21 +181,21 @@ void MainWindow::EventLoop( SDL_Event &e ){
             break;
         }
         case SDL_KEYDOWN:{
-            if (pause) break;
             SDL_Keycode key = e.key.keysym.sym;
             if ( key == CHANGE_PRESS ){
                 active_shape->Change(play_pool);
-            }else if ( key == LEFT_PRESS ){
+            }else if ( key == LEFT_PRESS && !pause ){
                 active_shape->Move(-1, 0, play_pool);
-            }else if ( key == RIGHT_PRESS ){
+            }else if ( key == RIGHT_PRESS && !pause ){
                 active_shape->Move(1, 0, play_pool);
-            }else if ( key == DOWN_PRESS ){
+            }else if ( key == DOWN_PRESS && !pause ){
                 active_shape->Move(0, 1, play_pool);
-            }else if ( key == PAUSE_PRESS){
-                pause = true;
+            }else if ( key == PAUSE_PRESS ){
+                if (!pause) pause = true;
+                else pause = false;
             }else { continue; };
             UpdateScreen();
-            SDL_Delay(2);
+            SDL_Delay(10);
             break;
         }
         case SDL_MOUSEBUTTONDOWN:{
@@ -266,32 +207,51 @@ void MainWindow::EventLoop( SDL_Event &e ){
         if (quit) break;
     }
 }
+int MainWindow::DeleteLine(int _y){
+    int counter = 0;
+    for (int j =_y; j < _y+4 && j < h+4; j++){
+        bool is_full = 1;
+        for (int i = 1; i < w; i++){
+            if(!play_pool[i+4][j]) {is_full = 0; break;}
+        }
+        if (is_full){
+            counter++;
+            for (int k = j; k > 0; k--){
+                for (int tmp = 0; tmp < w; tmp++){
+                    play_pool[tmp+4][k] = play_pool[tmp+4][k-1];
+                    color_pool[tmp+4][k] = color_pool[tmp+4][k-1];
+                }
+            }
+        }
+    }
+    return counter;
+};
 void MainWindow::GameStart(){
-    std::srand(std::time(nullptr));
     ItemInit(this_item);
     ItemInit(next_item);
     uint32_t speed_counter = 0;
     while (!CheckRedLine()){
         printf("game start: %d\n", speed_counter);//FIXME test
         BlockInit(active_shape, w/2 + 4, 0, this_item);
-        BlockInit(hint_shape, 0, 0, next_item);
+        BlockInit(hint_shape, -2, 0, next_item);
         printf("end block init\n");
+        int delete_line = 0;
         while (active_shape != nullptr){
             Uint32 begin = SDL_GetTicks();
             SDL_Event e;
             EventLoop(e); 
             if (quit) break;
-            speed_counter++;
+            if (!pause) speed_counter++;
             if (!pause && (speed_counter == STYLE_SPEED)){
                 speed_counter = 0;
                 if (!active_shape->Move(0, 1, play_pool)){
                     active_shape->Stick(play_pool, color_pool);
+                    delete_line = DeleteLine(active_shape->y);
                     delete active_shape;
                     active_shape = nullptr;
                     printf("end stick\n");
                 }
             };
-
             UpdateScreen();
             Uint32 end = SDL_GetTicks();
             Uint32 delay = 1000/FREAM_RAET - (end - begin);
@@ -299,7 +259,8 @@ void MainWindow::GameStart(){
             if (delay <= 1000/FREAM_RAET) SDL_Delay(delay);
             // TODO savedata
         }
-        //TODO delete line
+        user.score += LINE_SCORE[delete_line];
+        printf("Score is: %d\n", user.score);
         if (quit) break;
         this_item = next_item;
         next_item.style = 0;
@@ -309,6 +270,9 @@ void MainWindow::GameStart(){
     }
     return;
 };
+User MainWindow::getUser(){
+    return user;
+};
 MainWindow::~MainWindow(){
     Close();
-}
+};
