@@ -1,5 +1,3 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
 #include <SDL2/SDL.h>
 #include "user.h"
 #include "Shape.h"
@@ -10,8 +8,10 @@ protected:
     const int window_x = SDL_WINDOWPOS_UNDEFINED;
     const int window_y = SDL_WINDOWPOS_UNDEFINED;
     const int each_rec_w = 20;
-    int w;
-    int h;
+    int w = 1600;
+    int h = 900;
+    int row_x;
+    int line_y;
     bool pause;
     bool quit;
     User user;
@@ -30,18 +30,22 @@ public:
     MainWindow();
     MainWindow(int _w, int _h, User _user);
     bool WindowInit();
-    void ItemInit(ShapeItem &re);
+
     bool BlockInit(Shape* &p, int b_x, int b_y, ShapeItem &item);
-    void GameStart();
-    void UpdateScreen();
-    int DeleteLine(int y);
     bool CheckRedLine();
+    bool DataLoad();
+    bool DataSave();
+    int DeleteLine(int y);
     void DrawRedLine();
     void DrawShape(Shape* &p);
     void EventLoop( SDL_Event &e );
+    void GameStart();
+    void ItemInit(ShapeItem &re);
+    void UpdateScreen();
     User getUser();
-    bool DataLoad();
+
+    bool NameInput();// TODO stl text input & path init
+    bool GameOver();
     void Close();
     ~MainWindow();
 };
-#endif

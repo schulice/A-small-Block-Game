@@ -1,6 +1,7 @@
+#ifndef SHAPE_CPP
+#define SHAPE_CPP
 #include "Shape.h"
 #include "constant.cpp"
-
 Shape::Shape(int _x, int _y, int _status, Uint32 _color){
     x = _x;
     y = _y;
@@ -47,3 +48,4 @@ bool Shape::Stick(std::vector<std::vector<bool> > &play_pool, std::vector<std::v
             }
     return sucess;
 }
+#endif

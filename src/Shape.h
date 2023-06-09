@@ -1,6 +1,5 @@
-#ifndef SHAPE_H
-#define SHAPE_H
-
+#ifndef _SHAPE_H_
+#define _SHAPE_H_
 #include <SDL2/SDL_stdinc.h>
 #include <vector>
 
@@ -187,4 +186,4 @@ public:
     };
 };
 
-#endif
+#endif // SHAPE_H

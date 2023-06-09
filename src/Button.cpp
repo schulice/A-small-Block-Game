@@ -1,3 +1,6 @@
+#ifndef BUTTON_CPP
+#define BUTTON_CPP
+
 #include "Button.h"
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_render.h>
@@ -27,7 +30,7 @@ void Button::draw( SDL_Renderer* mainrenderer ){
     SDL_Color color = {0, 0, 0, 0xff};
     SDL_Surface* text_surface = TTF_RenderText_Solid(FONT, text.c_str(), color);
     SDL_Texture* text_texture = SDL_CreateTextureFromSurface(mainrenderer, text_surface);
-    SDL_Rect text_rect = {x + w/2 - text_surface->w/2, y + h/2 - text_surface->h/2, text_surface->w, text_surface->h};
+    SDL_Rect text_rect = {x + w/5, y + h/5, w/2, h/2};
     SDL_RenderCopy(mainrenderer, text_texture, NULL, &text_rect);
     SDL_FreeSurface(text_surface);
     SDL_DestroyTexture(text_texture);
@@ -44,3 +47,9 @@ bool Button::CheckEvent( int _x, int _y ){
     }
     return clicked;
 }
+
+Button::~Button(){
+    SDL_DestroyTexture(texture);
+}
+
+#endif
