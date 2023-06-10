@@ -1,7 +1,7 @@
 resources/background_1.jpg
 resources/bgm_1.mp3
-10
-20
+50
+40
 1073741904
 1073741903
 1073741906

@@ -348,6 +348,7 @@ void MainWindow::GameStart(){
         }
         if (delete_line > 4) delete_line = 4;
         user.score += LINE_SCORE[delete_line];
+        user.score++;
         printf("delete_line: %d\n", delete_line);
         printf("Score is: %d\n", user.score);
         if (quit) break;

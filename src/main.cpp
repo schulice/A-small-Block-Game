@@ -305,7 +305,7 @@ int main( int, char ** ){
 								if (row_input.GetText() != "")
 									tmp = std::stoi(row_input.GetText());
 								else tmp = 0;
-								if (tmp > 0 && tmp < 92) PLAY_ROW = tmp;
+								if (tmp > 0 && tmp < 91) PLAY_ROW = tmp;
 								else PLAY_ROW = 10;
 								DrawSetting();
 								SDL_RenderPresent(ui_renderer);
@@ -331,9 +331,9 @@ int main( int, char ** ){
 							else if(line_input.Input(event)){
 								int tmp;
 								if (line_input.GetText() != "")
-									tmp = std::stoi(row_input.GetText());
+									tmp = std::stoi(line_input.GetText());
 								else tmp = 0;
-								if (tmp > 0 && tmp < 192) PLAY_ROW = tmp;
+								if (tmp > 0 && tmp < 41) PLAY_LINE = tmp;
 								else PLAY_LINE = 20;
 								DrawSetting();
 								SDL_RenderPresent(ui_renderer);
