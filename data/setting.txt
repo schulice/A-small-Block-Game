@@ -1,0 +1,9 @@
+resources/background_1.jpg
+resources/bgm_1.mp3
+10
+20
+1073741904
+1073741903
+1073741906
+1073741905
+112

@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_cpuinfo.h>
+#include <SDL2/SDL_gesture.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_mixer.h>
@@ -14,17 +15,10 @@
 #include <utility>
 #include "Button.cpp"
 #include "TextInput.h"
-#include "constant.cpp"
+#include "constant.cpp"		//CONSTANT
 #include "Shape.cpp"
 #include "MainWindow.cpp"
-
-extern std::string USER_DATA_PATH;
-extern std::string FONT_PATH;
-extern User USER[9];
-extern TTF_Font* FONT;
-extern std::string BUTTON_PATH;
-extern std::string BACKGROUND_PATH;
-extern std::string MUSIC_BG_PATH;
+#include "PressChange.cpp"
 
 void PrintText(std::string s, SDL_Renderer *r, int x, int y, int w, int h, SDL_Color color){
 	//SDL_Color color = {0, 0, 0, 0xff};
@@ -60,7 +54,36 @@ void LoadUser(){
 	a.close();
 }
 
+void SaveSetting(){
+	FILE *f = fopen(SETTING_PATH.c_str(), "w");
+	fprintf(f, "%s\n", BACKGROUND_PATH.c_str());
+	fprintf(f, "%s\n", MUSIC_BG_PATH.c_str());
+	fprintf(f, "%d\n", PLAY_ROW);
+	fprintf(f, "%d\n", PLAY_LINE);
+	fprintf(f, "%d\n", LEFT_PRESS);
+	fprintf(f, "%d\n", RIGHT_PRESS);
+	fprintf(f, "%d\n", CHANGE_PRESS);
+	fprintf(f, "%d\n", DOWN_PRESS);
+	fprintf(f, "%d\n", PAUSE_PRESS);
+	fclose(f);
+}
+
+void LoadSetting(){
+	std::ifstream  a(SETTING_PATH, std::ios::in);
+	std::getline(a, BACKGROUND_PATH);
+	std::getline(a, MUSIC_BG_PATH);
+	a >> PLAY_ROW;
+	a >> PLAY_LINE;
+	a >> LEFT_PRESS;
+	a >> RIGHT_PRESS;
+	a >> CHANGE_PRESS;
+	a >> DOWN_PRESS;
+	a >> PAUSE_PRESS;
+	a.close();
+}
+
 int main( int, char ** ){
+	//Init SDL
 	bool sucess = true;
 	if ( SDL_Init( SDL_INIT_VIDEO ) < 0 ) sucess = false;
     if ( !( IMG_Init( IMG_INIT_PNG ) & IMG_INIT_PNG ) ) sucess = false;
@@ -76,6 +99,8 @@ int main( int, char ** ){
 	
 	LoadUser();
 	printf("LoadUser\n");
+	LoadSetting();
+
 	//contracting window
 	init_contract:;
 	printf("init_contract\n");
@@ -133,11 +158,17 @@ int main( int, char ** ){
 	color_setting[1] = { 850, 340, 50, 50 };
 	color_setting[0].update("1");
 	color_setting[1].update("2");
-	Button delete_all_user = { 500, 620, 350, 100 };
+	Button delete_all_user = { 800, 620, 350, 100 };
 	delete_all_user.update("Delete_All_Users");
 	TextInput row_input(600, 410, 100, 50, std::to_string(PLAY_ROW));
 	TextInput line_input(800, 410, 100, 50, std::to_string(PLAY_LINE));
 
+	PressChange press_change[5];
+	press_change[0] = { 600, 480, 100, 50, LEFT_PRESS};
+	press_change[1] = { 800, 480, 100, 50, RIGHT_PRESS};
+	press_change[2] = { 600, 550, 100, 50, DOWN_PRESS};
+	press_change[3] = { 800, 550, 100, 50, CHANGE_PRESS};
+	press_change[4] = { 600, 620, 100, 50, PAUSE_PRESS};
 	auto DrawSetting = [&](){
 		DrawBG_Selec();
 		SDL_Color color = { 00, 00, 00, 0xff };
@@ -150,7 +181,8 @@ int main( int, char ** ){
 		PrintText("Right:", ui_renderer, 700, 480, 100, 50, color);
 		PrintText("Down:", ui_renderer, 500, 550, 100, 50, color);
 		PrintText("Change:", ui_renderer, 700, 550, 100, 50, color);
-		
+		PrintText("Pause:", ui_renderer, 500, 620, 100, 50, color);
+
 		for (int i = 0; i < 2; i++){
 			BDI_setting[i].draw(ui_renderer);
 			BDM_setting[i].draw(ui_renderer);
@@ -159,6 +191,9 @@ int main( int, char ** ){
 		row_input.Render(ui_renderer);
 		line_input.Render(ui_renderer);
 		delete_all_user.draw(ui_renderer);
+		for (int i = 0; i < 5; i++){
+			press_change[i].Render(ui_renderer);
+		};
 	};
 
 	bool StartBar = false;
@@ -167,10 +202,7 @@ int main( int, char ** ){
 	//event loop
 	while (!quit){
 		while (SDL_PollEvent(&event)){
-			bool row_input_e = false;
-			bool line_input_e = false;
 			if (event.type == SDL_QUIT) quit = true;
-			if (row_input_e){};
 			if (event.type == SDL_MOUSEBUTTONDOWN){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
@@ -323,6 +355,26 @@ int main( int, char ** ){
 							data_button[i].update("");
 						}
 					}
+					for (int i = 0; i < 5; i++){
+						if (press_change[i].Check(x, y)){
+							bool quit_change = false;
+							while (SDL_PollEvent(&event) || !quit_change){
+								if (event.type == SDL_KEYDOWN){
+									if(press_change[i].Change(event)){
+									quit_change = true;
+									break;
+									}
+								}
+							}
+							LEFT_PRESS = press_change[0].GetKey();
+							RIGHT_PRESS = press_change[1].GetKey();
+							DOWN_PRESS = press_change[2].GetKey();
+							CHANGE_PRESS = press_change[3].GetKey();
+							PAUSE_PRESS = press_change[4].GetKey();
+							DrawSetting();
+							SDL_RenderPresent(ui_renderer);
+						}
+					}
 				}
 				if (quit) break;
 			};
@@ -332,7 +384,7 @@ int main( int, char ** ){
 	SDL_DestroyRenderer(ui_renderer);
 	SDL_DestroyWindow(ui);
 
-
+	//gaming window
 	if(start_game){
 		MainWindow *mainwindow = new MainWindow(PLAY_ROW, PLAY_LINE, USER[id]);
 		if (!mainwindow->WindowInit()) printf("main window init error!");
@@ -343,10 +395,10 @@ int main( int, char ** ){
 		delete mainwindow;
 		goto init_contract;
 	}
-	
+	//save user data
 	SaveUser();
-
-
+	SaveSetting();
+	//close SDL
 	Mix_FreeMusic(bg_music);
 	Mix_CloseAudio();
 	TTF_CloseFont(FONT);

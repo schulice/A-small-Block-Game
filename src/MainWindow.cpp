@@ -19,18 +19,6 @@ constexpr int EACH_BLOCK_WIDTH = 20;
 constexpr int FREAM_RAET = 20;
 constexpr int RESERVE_WIDTH = 400;
 
-extern SDL_KeyCode CHANGE_PRESS;
-extern SDL_KeyCode LEFT_PRESS;
-extern SDL_KeyCode RIGHT_PRESS;
-extern SDL_KeyCode DOWN_PRESS;
-extern SDL_KeyCode PAUSE_PRESS;
-extern uint32_t STYLE_SPEED;
-extern std::string BACKGROUND_PATH;
-extern const int LINE_SCORE[5];
-extern Uint32 SHAPE_COLOR[8];
-
-extern int PLAY_ROW;
-extern int PLAY_LINE;
 
 class RandomGenerator {
 public:

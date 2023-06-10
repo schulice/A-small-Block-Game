@@ -17,8 +17,9 @@ protected:
     bool pause;
     
     bool quit;
+    
     User user;
-
+    //to save shape info
     ShapeItem this_item = {0, 0};
     ShapeItem next_item = {0, 0};
 
