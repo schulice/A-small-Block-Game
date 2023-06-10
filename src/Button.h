@@ -13,6 +13,7 @@ public:
     void draw( SDL_Renderer* mainrenderer );
     void update( std::string _text );
     bool CheckEvent( int x, int y );
+    void setpoi(int _x, int _y, int _w, int _h);
 private:
     int x, y;
     int w, h;

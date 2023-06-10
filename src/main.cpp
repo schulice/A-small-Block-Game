@@ -1,17 +1,19 @@
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_pixels.h>
-#include <SDL2/SDL_rect.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_stdinc.h>
-#include <SDL2/SDL_timer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_cpuinfo.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_mixer.h>
+#include <charconv>
+#include <cinttypes>
+#include <cstdio>
+#include <fstream>
 #include <algorithm>
 #include <cstdio>
 #include <forward_list>
+#include <string>
+#include <utility>
 #include "Button.cpp"
+#include "TextInput.h"
 #include "constant.cpp"
 #include "Shape.cpp"
 #include "MainWindow.cpp"
@@ -30,10 +32,33 @@ void PrintText(std::string s, SDL_Renderer *r, int x, int y, int w, int h, SDL_C
     SDL_Texture* text_texture = SDL_CreateTextureFromSurface(r, text_surface);
 	SDL_Rect rect = {x, y, w, h};
     SDL_RenderCopy(r, text_texture, NULL, &rect);
+	SDL_FreeSurface(text_surface);
+	SDL_DestroyTexture(text_texture);
 }
 
-
-
+void SaveUser(){
+	FILE *f = fopen(USER_DATA_PATH.c_str(), "w");
+	for (int i = 0; i < 9; i++){
+		fprintf(f, "%s\n", USER[i].name.c_str());
+		fprintf(f, "%s\n", USER[i].data_path.c_str());
+		fprintf(f, "%d\n", USER[i].best_score);
+		fprintf(f, "%d\n", USER[i].sum_score);
+		fprintf(f, "%lu\n", USER[i].size);
+	}
+	fclose(f);
+}
+void LoadUser(){
+	std::ifstream  a(USER_DATA_PATH, std::ios::in);
+	for (int i = 0; i < 9; i++){
+		std::getline(a, USER[i].name);
+		std::getline(a, USER[i].data_path);
+		a >> USER[i].best_score;
+		a >> USER[i].sum_score;
+		a >> USER[i].size;
+		a.ignore();
+	}
+	a.close();
+}
 
 int main( int, char ** ){
 	bool sucess = true;
@@ -45,16 +70,15 @@ int main( int, char ** ){
 	SDL_Log("SDL_Init: %d\n", sucess);
 	FONT = TTF_OpenFont(FONT_PATH.c_str(), 24);
 	Mix_Music *bg_music = Mix_LoadMUS(MUSIC_BG_PATH.c_str());
-	//Mix_PlayMusic(bg_music, SDL_TRUE);
+	Mix_PlayMusic(bg_music, SDL_TRUE);
 	if ( bg_music == nullptr ) SDL_Log("music error!\n");
 	else SDL_Log("music sucess!\n");
-
-	/**
-	SDL_RWops* user_data_file = SDL_RWFromFile( "data/user_data.dat", "r+b" );
-	SDL_RWread(user_data_file, &USER, sizeof(User),9);
-	SDL_RWclose( user_data_file );
-	**/
+	
+	LoadUser();
+	printf("LoadUser\n");
+	//contracting window
 	init_contract:;
+	printf("init_contract\n");
 	int id = 0;
 	bool start_game = false;
 	SDL_Window *ui = SDL_CreateWindow("Contracting UI",
@@ -70,18 +94,19 @@ int main( int, char ** ){
     if ( bg_texture == nullptr ) SDL_Log("background error!\n");
 	//SDL_RenderPresent(ui_renderer);
 	Button select_button[4];
+	for (int i = 0; i < 4; i++){ 
+		select_button[i] = { 100, 200 + 150 * i, 200, 100 };
+	};
+	select_button[0].update("Start Game");
+	select_button[1].update("Ranking");
+	select_button[2].update("Settings");
+	select_button[3].update("Exit");
+	auto DrawBG_Selec = [&](){
+		SDL_RenderClear(ui_renderer);
+		SDL_RenderCopy(ui_renderer, bg_texture, NULL, NULL);
 		for (int i = 0; i < 4; i++){
-			select_button[i] = { 100, 200 + 150 * i, 200, 100 };
+			select_button[i].draw(ui_renderer);
 		};
-		select_button[0].update("Start Game");
-		select_button[1].update("Ranking");
-		select_button[2].update("Settings");
-		select_button[3].update("Exit");
-		auto DrawBG_Selec = [&](){
-			SDL_RenderCopy(ui_renderer, bg_texture, NULL, NULL);
-			for (int i = 0; i < 4; i++){
-				select_button[i].draw(ui_renderer);
-			};
 	};
 	DrawBG_Selec();
 	SDL_RenderPresent(ui_renderer);
@@ -93,12 +118,59 @@ int main( int, char ** ){
 		data_button[i].update(USER[i].name);
 	};
 
+	Button BDI_setting[2];
+	BDI_setting[0] = { 700, 200, 50, 50 };
+	BDI_setting[1] = { 850, 200, 50, 50 };
+	BDI_setting[0].update("1");
+	BDI_setting[1].update("2");
+	Button BDM_setting[2];
+	BDM_setting[0] = { 700, 270, 50, 50 };
+	BDM_setting[1] = { 850, 270, 50, 50 };
+	BDM_setting[0].update("1");
+	BDM_setting[1].update("2");
+	Button color_setting[2]; 
+	color_setting[0] = { 700, 340, 50, 50 };
+	color_setting[1] = { 850, 340, 50, 50 };
+	color_setting[0].update("1");
+	color_setting[1].update("2");
+	Button delete_all_user = { 500, 620, 350, 100 };
+	delete_all_user.update("Delete_All_Users");
+	TextInput row_input(600, 410, 100, 50, std::to_string(PLAY_ROW));
+	TextInput line_input(800, 410, 100, 50, std::to_string(PLAY_LINE));
+
+	auto DrawSetting = [&](){
+		DrawBG_Selec();
+		SDL_Color color = { 00, 00, 00, 0xff };
+		PrintText("BGI:", ui_renderer, 500, 200, 100, 50, color);
+		PrintText("BGM:", ui_renderer, 500, 270, 100, 50, color);
+		PrintText("Color:", ui_renderer, 500, 340, 100, 50, color);
+		PrintText("Row:", ui_renderer, 500, 410, 100, 50, color);
+		PrintText("Line:", ui_renderer, 700, 410, 100, 50, color);
+		PrintText("Left:", ui_renderer, 500, 480, 100, 50, color);
+		PrintText("Right:", ui_renderer, 700, 480, 100, 50, color);
+		PrintText("Down:", ui_renderer, 500, 550, 100, 50, color);
+		PrintText("Change:", ui_renderer, 700, 550, 100, 50, color);
+		
+		for (int i = 0; i < 2; i++){
+			BDI_setting[i].draw(ui_renderer);
+			BDM_setting[i].draw(ui_renderer);
+			color_setting[i].draw(ui_renderer);
+		};
+		row_input.Render(ui_renderer);
+		line_input.Render(ui_renderer);
+		delete_all_user.draw(ui_renderer);
+	};
+
 	bool StartBar = false;
 	bool RatingBar = false;
 	bool SettingBar = false;
+	//event loop
 	while (!quit){
 		while (SDL_PollEvent(&event)){
+			bool row_input_e = false;
+			bool line_input_e = false;
 			if (event.type == SDL_QUIT) quit = true;
+			if (row_input_e){};
 			if (event.type == SDL_MOUSEBUTTONDOWN){
 				int x, y;
 				SDL_GetMouseState(&x, &y);
@@ -122,18 +194,9 @@ int main( int, char ** ){
 					SDL_Color color = {0, 0, 0, 0xff};
 					for (int i = 0; i < 9; i++){
 						if (USER[i].name == "") continue;
-						SDL_Surface* text_surface = TTF_RenderText_Solid(FONT, USER[i].name.c_str(), color);
-						SDL_Texture* text_texture = SDL_CreateTextureFromSurface(ui_renderer, text_surface);
-						SDL_Rect rect = {400, 200 + 150 * i, 200, 100};
-						SDL_RenderCopy(ui_renderer, text_texture, NULL, &rect);
-						
-						text_surface = TTF_RenderText_Solid(FONT, std::to_string(USER[i].best_score).c_str(), color);
-						text_texture = SDL_CreateTextureFromSurface(ui_renderer, text_surface);
-						rect = {700, 200 + 150 * i, 200, 100};
-						SDL_RenderCopy(ui_renderer, text_texture, NULL, &rect);
-						
-						SDL_FreeSurface(text_surface);
-						SDL_DestroyTexture(text_texture);
+						PrintText(USER[i].name, ui_renderer, 500, 100+40*i, USER[i].name.size()*20, 50, color);
+						std::string tmp = std::to_string(USER[i].best_score);
+						PrintText(tmp, ui_renderer, 1000, 100+40*i, tmp.size()*20, 50, color);
 					}
 					SDL_RenderPresent(ui_renderer);
 					StartBar = false;
@@ -142,8 +205,14 @@ int main( int, char ** ){
 				}
 				else if ( select_button[2].CheckEvent(x, y) )
 				{
-					//TODO settingUI
-					quit = true;
+					SDL_RenderClear(ui_renderer);
+					DrawBG_Selec();
+					DrawSetting();
+
+					SDL_RenderPresent(ui_renderer);
+					StartBar = false;
+					RatingBar = false;
+					SettingBar = true;
 				}
 				else if ( select_button[3].CheckEvent(x, y) )
 				{
@@ -161,7 +230,99 @@ int main( int, char ** ){
 					}
 				}
 				else if (SettingBar){
-
+					for (int i = 0; i < 2; i++){
+						if(BDI_setting[i].CheckEvent(x, y)){
+							int n = BACKGROUND_PATH.size();
+							BACKGROUND_PATH[n-5] = i + '1';
+							SDL_DestroyTexture(bg_texture);
+							bg_texture = IMG_LoadTexture( ui_renderer , BACKGROUND_PATH.c_str() );
+							if (bg_texture == NULL) printf("Error: %s\n", SDL_GetError());
+							SDL_RenderClear(ui_renderer);
+							DrawSetting();
+							SDL_RenderPresent(ui_renderer);
+						}
+						else if(BDM_setting[i].CheckEvent(x, y)){
+							int n = MUSIC_BG_PATH.size();
+							MUSIC_BG_PATH[n-5] = i + '1';
+							Mix_FreeMusic(bg_music);
+							bg_music = Mix_LoadMUS(MUSIC_BG_PATH.c_str());
+							Mix_PlayMusic(bg_music, -1);
+						}
+						else if(color_setting[i].CheckEvent(x, y)){
+							if (i == 0)
+								for (int j = 0; j < 8; j++) SHAPE_COLOR[j] = SHAPE_COLOR_1[j];
+							else
+								for (int j = 0; j < 8; j++) SHAPE_COLOR[j] = SHAPE_COLOR_2[j];
+							DrawSetting();
+						}
+					}
+					if (row_input.Check(x, y)){
+						SDL_StartTextInput();
+						bool quit_input = false;
+						while (SDL_PollEvent(&event) || !quit_input){
+							if (event.type == SDL_MOUSEBUTTONDOWN){
+								int tmp_x, tmp_y;
+								SDL_GetMouseState(&tmp_x, &tmp_y);
+								if (!row_input.Check(tmp_x, tmp_y)) {
+									quit_input = true;
+									break;
+								}
+							}
+							else if(row_input.Input(event)){
+								int tmp;
+								if (row_input.GetText() != "")
+									tmp = std::stoi(row_input.GetText());
+								else tmp = 0;
+								if (tmp > 0 && tmp < 92) PLAY_ROW = tmp;
+								else PLAY_ROW = 10;
+								DrawSetting();
+								SDL_RenderPresent(ui_renderer);
+							}
+						}
+						row_input.SetText(std::to_string(PLAY_ROW));
+						DrawSetting();
+						SDL_RenderPresent(ui_renderer);
+						SDL_StopTextInput();
+					}
+					else if (line_input.Check(x, y)){
+						SDL_StartTextInput();
+						bool quit_input = false;
+						while (SDL_PollEvent(&event) || !quit_input){
+							if (event.type == SDL_MOUSEBUTTONDOWN){
+								int tmp_x, tmp_y;
+								SDL_GetMouseState(&tmp_x, &tmp_y);
+								if (!line_input.Check(tmp_x, tmp_y)) {
+									quit_input = true;
+									break;
+								}
+							}
+							else if(line_input.Input(event)){
+								int tmp;
+								if (line_input.GetText() != "")
+									tmp = std::stoi(row_input.GetText());
+								else tmp = 0;
+								if (tmp > 0 && tmp < 192) PLAY_ROW = tmp;
+								else PLAY_LINE = 20;
+								DrawSetting();
+								SDL_RenderPresent(ui_renderer);
+							}
+						}
+						line_input.SetText(std::to_string(PLAY_LINE));
+						DrawSetting();
+						SDL_RenderPresent(ui_renderer);
+						SDL_StopTextInput();
+					}
+					else if (delete_all_user.CheckEvent(x, y)){
+						for (int i = 0; i < 9; i++){
+							USER[i].name = "";
+							remove(USER[i].data_path.c_str());
+							USER[i].data_path = "";
+							USER[i].best_score = 0;
+							USER[i].score = 0;
+							USER[i].size = 0;
+							data_button[i].update("");
+						}
+					}
 				}
 				if (quit) break;
 			};
@@ -171,8 +332,9 @@ int main( int, char ** ){
 	SDL_DestroyRenderer(ui_renderer);
 	SDL_DestroyWindow(ui);
 
+
 	if(start_game){
-		MainWindow *mainwindow = new MainWindow(10, 20, USER[id]);
+		MainWindow *mainwindow = new MainWindow(PLAY_ROW, PLAY_LINE, USER[id]);
 		if (!mainwindow->WindowInit()) printf("main window init error!");
 		else printf("main window init sucess!");
 		mainwindow->GameStart();
@@ -182,12 +344,7 @@ int main( int, char ** ){
 		goto init_contract;
 	}
 	
-
-	/**
-	user_data_file = SDL_RWFromFile( "data/user_data.dat", "r+b" );
-	SDL_RWwrite(user_data_file, &USER, sizeof(User),9);
-	SDL_RWclose( user_data_file );
-	**/
+	SaveUser();
 
 
 	Mix_FreeMusic(bg_music);

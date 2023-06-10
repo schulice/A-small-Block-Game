@@ -1,12 +1,17 @@
 #pragma once 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+#include <SDL2/SDL.h>
+#include "Button.h"
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_image.h>
 #include "Shape.cpp"
 #include "MainWindow.h"
 #include "Button.cpp"
+#include "TextInput.h"
 #include "constant.cpp"
 #include "TextInput.cpp"
+#include <fstream>
 #include <cmath>
+#include <memory_resource>
 #include <string>
 #include <random>
 
@@ -22,7 +27,10 @@ extern SDL_KeyCode PAUSE_PRESS;
 extern uint32_t STYLE_SPEED;
 extern std::string BACKGROUND_PATH;
 extern const int LINE_SCORE[5];
-extern const Uint32 SHAPE_COLOR[8];
+extern Uint32 SHAPE_COLOR[8];
+
+extern int PLAY_ROW;
+extern int PLAY_LINE;
 
 class RandomGenerator {
 public:
@@ -41,13 +49,10 @@ MainWindow::MainWindow(){
     row_x = 0, line_y = 0;
 }
 MainWindow::MainWindow(int row, int line, User _user){
-    row_x = row, line_y = line;
     user = _user;
+    ButtonInit();
     if (user.name == ""){
-        play_pool.resize(w+8, std::vector<bool>(h+8, true));
-        for (int i = 0; i < row_x; i++)
-            for (int j = 0; j < line_y + 4; j++) play_pool[i+4][j] = false;
-        color_pool.resize(w+8, std::vector<Uint32>(h+8, 0x000000));
+        PoolInit(row, line);
     }
     else{
         if ( DataLoad() ) SDL_Log("data load sucess!\n");
@@ -71,10 +76,13 @@ bool MainWindow::WindowInit(){
     if (mainrenderer == nullptr) sucess = false, SDL_Log("renderer error!\n");
     backgroundtexture = IMG_LoadTexture( mainrenderer, BACKGROUND_PATH.c_str() );
     if ( backgroundtexture == nullptr ) sucess = false, SDL_Log("background error!\n");
-    //if (user.name == "") NameInput();
-    //TODO nameinput
+    if (user.name == "") {
+        NameInput();
+        user.data_path = "data/" + user.name + ".dat";
+    }
     return sucess;
 };
+
 bool MainWindow::BlockInit(Shape* &p, int b_x, int b_y, ShapeItem &item){
     if (p != nullptr) return true;
     switch(item.style){
@@ -103,6 +111,18 @@ bool MainWindow::BlockInit(Shape* &p, int b_x, int b_y, ShapeItem &item){
     if (p == nullptr) {printf("item init error\n"); return false;}
     else return true;
 };
+bool MainWindow::ButtonInit(){
+    speed_plus = new Button(10, 200, 50, 50);
+    speed_minus = new Button(250, 200, 50, 50);
+    pause_button = new Button(50,300 , 100, 50);
+    quit_button = new Button(50, 400, 100, 50);
+    speed_plus->update("+");
+    speed_minus->update("-");
+    pause_button->update("pause");
+    quit_button->update("quit");
+    if (speed_plus == nullptr || speed_minus == nullptr || pause_button == nullptr || quit_button == nullptr) return false;
+    else return true;
+}
 bool MainWindow::CheckRedLine(){
     bool is_red = false;
     for (int i = 0; i < row_x; i++){
@@ -110,6 +130,7 @@ bool MainWindow::CheckRedLine(){
     }
     return is_red;
 }
+
 void MainWindow::Close(){
     SDL_DestroyTexture( backgroundtexture );
 	backgroundtexture = NULL;
@@ -123,23 +144,32 @@ void MainWindow::Close(){
 }
 bool MainWindow::DataLoad(){
     // dataload
-    SDL_RWops* user_data_file = SDL_RWFromFile( user.data_path.c_str(), "r+b" );
-    if( user_data_file == NULL ){
-        printf( "Warning: Unable to open file! SDL Error: %s\n", SDL_GetError() );
-        return false;
-    }
-    SDL_RWread( user_data_file, this, sizeof(MainWindow), 1 );
-    SDL_RWclose( user_data_file );
-    delete user_data_file;
-    return true;
+    std::fstream file = std::fstream(user.data_path, std::ios::in | std::ios::binary);
+    if (!file.is_open()) return false;
+    file.read((char*)play_pool, sizeof(play_pool));
+    file.read((char*)color_pool, sizeof(color_pool));
+    file.read((char*)&row_x, sizeof(row_x));
+    file.read((char*)&line_y, sizeof(line_y));
+    file.read((char*)&this_item, sizeof(this_item));
+    file.read((char*)&next_item, sizeof(next_item));
+    file.close();
+    Shape *active_shape = NULL;
+    Shape *hint_shape = NULL;
+    if (user.name != "" )return true;
+    else return false;
 }
 
 bool MainWindow::DataSave(){
     // datasave
-    SDL_RWops* user_data_file = SDL_RWFromFile( user.data_path.c_str(), "w+b" );
-    SDL_RWwrite( user_data_file, this, sizeof(MainWindow), 1 );
-    SDL_RWclose( user_data_file );
-    delete user_data_file;
+    std::fstream file = std::fstream(user.data_path, std::ios::out | std::ios::trunc | std::ios::binary);
+    if (!file.is_open()) return false;
+    file.write((char*)play_pool, sizeof(play_pool));
+    file.write((char*)color_pool, sizeof(color_pool));
+    file.write((char*)&row_x, sizeof(row_x));
+    file.write((char*)&line_y, sizeof(line_y));
+    file.write((char*)&this_item, sizeof(this_item));
+    file.write((char*)&next_item, sizeof(next_item));
+    file.close();
     return true;
 }
 
@@ -194,16 +224,37 @@ void MainWindow::ItemInit(ShapeItem &p){
     };
     return;
 }
+void MainWindow::PoolInit( int row, int line ){
+    row_x = row, line_y = line;
+    auto FillBool=[&](int _x, int _y, int dx, int dy, bool value){
+        for (int i = _x; i < dx; i++)
+            for (int j = _y; j < dy; j++) play_pool[i][j] = value;
+    };
+    FillBool(0, 0, row_x+8, line_y+8, 1);
+    FillBool(4, 0, row_x+4, line_y+4, 0);
+    return;
+}
 void MainWindow::UpdateScreen(){
     //background draw
     SDL_RenderClear(mainrenderer);
     SDL_RenderCopy( mainrenderer, backgroundtexture, NULL, NULL );
+    //pool draw
+    SDL_SetRenderDrawColor(mainrenderer, 0x66, 0x66, 0x66, 0x88);
+    SDL_Rect tmp_bg = {RESERVE_WIDTH, 0, row_x*each_rec_w, (line_y+4)*each_rec_w};
+    SDL_RenderFillRect(mainrenderer, &tmp_bg);
     //red line draw
     DrawRedLine();
+ 
     //text draw
     TextDraw(mainrenderer, "The Next is", 10, 10, 250, 50);
     TextDraw(mainrenderer, "Score:", 10, 70, 150, 50);
     TextDraw(mainrenderer, std::to_string(user.score), 50, 130, 25*(user.score == 0 ? 0 : (int)(std::log10(user.score)+1) ), 50);
+    //button draw
+    speed_plus->draw(mainrenderer);
+    speed_minus->draw(mainrenderer);
+    pause_button->draw(mainrenderer);
+    quit_button->draw(mainrenderer);
+    TextDraw(mainrenderer, std::to_string(30-STYLE_SPEED), 80, 200, 50, 50);
     //active style draw
     if (active_shape != nullptr) DrawShape(active_shape);
     if (hint_shape != nullptr) DrawShape(hint_shape);
@@ -252,9 +303,20 @@ void MainWindow::EventLoop( SDL_Event &e ){
             break;
         }
         case SDL_MOUSEBUTTONDOWN:{
-            //TODO mouse event
-
-            break;
+            int e_x, e_y;
+            SDL_GetMouseState(&e_x, &e_y);
+            if (speed_plus->CheckEvent(e_x, e_y)){
+                if (STYLE_SPEED > 0) STYLE_SPEED--;
+            }else if (speed_minus->CheckEvent(e_x, e_y)){
+                if (STYLE_SPEED < 29) STYLE_SPEED++;
+            }else if (pause_button->CheckEvent(e_x, e_y)){
+                if (!pause) pause = true;
+                else pause = false;
+            }else if (quit_button->CheckEvent(e_x, e_y)){
+                quit = true;
+            }else { continue; };
+            UpdateScreen();
+            SDL_Delay(10);
         }
         };
         if (quit) break;
@@ -262,6 +324,7 @@ void MainWindow::EventLoop( SDL_Event &e ){
 }
 
 void MainWindow::GameStart(){
+    start:;
     ItemInit(this_item);
     ItemInit(next_item);
     active_shape = nullptr;
@@ -279,7 +342,7 @@ void MainWindow::GameStart(){
             EventLoop(e); 
             if (quit) break;
             if (!pause) speed_counter++;
-            if (!pause && (speed_counter == STYLE_SPEED)){
+            if (!pause && (speed_counter >= STYLE_SPEED)){
                 speed_counter = 0;
                 if (!active_shape->Move(0, 1, play_pool)){
                     active_shape->Stick(play_pool, color_pool);
@@ -294,8 +357,8 @@ void MainWindow::GameStart(){
             Uint32 delay = 1000/FREAM_RAET - (end - begin);
             //printf("delay: %d\n", delay);
             if (delay <= 1000/FREAM_RAET) SDL_Delay(delay);
-            // TODO savedata
         }
+        if (delete_line > 4) delete_line = 4;
         user.score += LINE_SCORE[delete_line];
         printf("delete_line: %d\n", delete_line);
         printf("Score is: %d\n", user.score);
@@ -306,7 +369,16 @@ void MainWindow::GameStart(){
         hint_shape = nullptr;
         ItemInit(next_item);
     }
-    
+    if (user.best_score < user.score) user.best_score = user.score;
+    user.score = 0;
+    if (TryAgain()){
+        PoolInit(PLAY_ROW, PLAY_LINE);
+        this_item.style = 0;
+        next_item.style = 0;
+        quit = 0;
+        goto start;
+    }
+    DataSave();
     return;
 };
 User MainWindow::getUser(){
@@ -317,4 +389,85 @@ MainWindow::~MainWindow(){
 };
 
 bool MainWindow::NameInput(){
+    TextInput textinput(10, 120, 300, 50, "YOUR_NAME");
+    Button *button = new Button(10, 170, 50, 50);
+    SDL_RenderClear(mainrenderer);
+    auto DrawName = [&](){
+        SDL_RenderCopy(mainrenderer, backgroundtexture, NULL, NULL);
+        TextDraw(mainrenderer, "Please input your name:", 10, 70, 250, 50);
+        textinput.Render(mainrenderer);
+        button->update("OK");
+        button->draw(mainrenderer);
+        SDL_RenderPresent(mainrenderer);
+    };
+    SDL_Event e;
+    bool end = false;
+    while (!end){
+        while (SDL_PollEvent(&e)){
+            if (e.type == SDL_QUIT){
+                end = true;
+                break;
+            }
+            textinput.Input(e);
+            if (e.type == SDL_MOUSEBUTTONDOWN){
+                int e_x, e_y;
+                SDL_GetMouseState(&e_x, &e_y);
+                if (textinput.Check(e_x, e_y)){
+                    SDL_StartTextInput();
+                }
+                if (button->CheckEvent(e_x, e_y)){
+                    SDL_StopTextInput();
+                    end = true;
+                    break;
+                }
+            }   
+            SDL_RenderClear(mainrenderer);
+            DrawName();
+    }
+    user.name = textinput.GetText();
+    if (user.name.size() > 30) user.name = user.name.substr(0, 30);
+    }
+    if (user.name == "") return false;
+    return true;
+}
+bool MainWindow::TryAgain(){
+    Button *Yes = new Button(100, 170, 50, 50);
+    Button *No = new Button(200, 170, 50, 50);
+    SDL_RenderClear(mainrenderer);
+    auto DrawTryAgain = [&](){
+        SDL_RenderCopy(mainrenderer, backgroundtexture, NULL, NULL);
+        TextDraw(mainrenderer, "Try again?", 10, 70, 250, 50);
+        Yes->update("OK");
+        No->update("NO");
+        Yes->draw(mainrenderer);
+        No->draw(mainrenderer);
+        SDL_RenderPresent(mainrenderer);
+    };
+    DrawTryAgain();
+    SDL_Event e;
+    bool jdu = false;
+    bool end = false;
+    while (!end){
+        while (SDL_PollEvent(&e)){
+            if (e.type == SDL_QUIT){
+                end = true;
+                break;
+            }
+            if (e.type == SDL_MOUSEBUTTONDOWN){
+                int e_x, e_y;
+                SDL_GetMouseState(&e_x, &e_y);
+                if (Yes->CheckEvent(e_x, e_y)){
+                    end = true;
+                    jdu = true;
+                    break;
+                }
+                else if (No->CheckEvent(e_x, e_y)){
+                    end = true;
+                    jdu = false;
+                    break;
+                }
+            }   
+    }
+    }
+    return jdu;
 }

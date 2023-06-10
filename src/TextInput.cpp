@@ -30,33 +30,28 @@ void TextInput::Render(SDL_Renderer *renderer){
     SDL_RenderFillRect(renderer, &rect);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xff);
     SDL_RenderDrawRect(renderer, &rect);
-    TextDraw(renderer, text, x, y, w, h);
+    int tmp_w = text.size() > 0 ? text.size() * 25 : 10;
+    if (tmp_w > w) tmp_w = w;
+    TextDraw(renderer, text, x, y, tmp_w, h);
 }
 
 void TextInput::SetText(std::string _text){
     text = _text;
 }
 
-void TextInput::Input(SDL_Event &e){
-    if (e.type == SDL_MOUSEBUTTONDOWN){
-        int _x, _y;
-        SDL_GetMouseState(&_x, &_y);
-        if (Check(_x, _y)){
-            SDL_StartTextInput();
-            SDL_SetTextInputRect(NULL);
+bool TextInput::Input(SDL_Event &e){
+    bool sucess = false;
+    if (e.type == SDL_TEXTINPUT || e.type == SDL_KEYDOWN){
+        if (e.type == SDL_TEXTINPUT){
+            text += e.text.text;
+        } else if (e.type == SDL_KEYDOWN){
+            if (e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0){
+                text.pop_back();
+            }
         }
-        else SDL_StopTextInput();
+        sucess = true;
     }
-    else if (e.type == SDL_KEYDOWN){
-        if (e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0)
-            text.pop_back();
-        else if (e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
-            SDL_SetClipboardText(text.c_str());
-        else if (e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)
-            text = SDL_GetClipboardText();
-    }
-    else if (e.type == SDL_TEXTINPUT)
-        text += e.text.text;
+    return sucess;
 }
 
 std::string TextInput::GetText(){
@@ -67,4 +62,8 @@ bool TextInput::Check(int _x, int _y){
     if (_x >= x && _x <= x + w && _y >= y && _y <= y + h)
         return 1;
     return 0;
+}
+
+TextInput::~TextInput(){
+    SDL_StopTextInput();
 }

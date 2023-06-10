@@ -23,10 +23,10 @@ public:
 public:
     Shape(int _x, int _y, int _status, Uint32 _color);
     Uint32 GetColor();
-    bool Check(std::vector<std::vector<bool> > &play_ground);//if OK return 1
-    bool Move(int delta_x, int delta_y, std::vector<std::vector<bool> > &play_ground);
-    bool Change(std::vector<std::vector<bool> > &play_ground);
-    bool Stick(std::vector<std::vector<bool> > &play_pool, std::vector<std::vector<Uint32> > &color_pool);
+    bool Check(bool play_ground[][200]);//if OK return 1
+    bool Move(int delta_x, int delta_y, bool play_ground[][200]);
+    bool Change(bool play_ground[][200]);
+    bool Stick(bool play_pool[][200], Uint32 color_pool[][200]);
     bool GetBool(int _x, int _y){
         return a[status][_x][_y];
     }

@@ -16,7 +16,7 @@ public:
     TextInput(int _x, int _y, int _w, int _h, std::string _text);
     void Render(SDL_Renderer *renderer);
     void SetText(std::string _text);
-    void Input(SDL_Event &e);
+    bool Input(SDL_Event &e);
     std::string GetText();
     bool Check(int _x, int _y);
     ~TextInput();

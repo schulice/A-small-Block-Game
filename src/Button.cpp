@@ -48,8 +48,12 @@ bool Button::CheckEvent( int _x, int _y ){
     return clicked;
 }
 
+void Button::setpoi(int _x, int _y, int _w, int _h){
+    x = _x, y = _y;
+    w = _w, h = _h;
+}
+
 Button::~Button(){
-    SDL_DestroyTexture(texture);
 }
 
 #endif

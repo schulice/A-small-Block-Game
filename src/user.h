@@ -8,5 +8,6 @@ struct User
     int score;
     int best_score;
     int sum_score;
+    unsigned long size;
 };
 #endif

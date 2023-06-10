@@ -11,7 +11,7 @@ Shape::Shape(int _x, int _y, int _status, Uint32 _color){
 Uint32 Shape::GetColor(){
     return color;
 }
-bool Shape::Check(std::vector<std::vector<bool> > &play_ground){
+bool Shape::Check(bool play_ground[][200]){
     bool is_empty = 1;
     for (int i = 0; i < edge; i++){
         for (int j = 0; j < edge; j++)
@@ -19,7 +19,7 @@ bool Shape::Check(std::vector<std::vector<bool> > &play_ground){
     }
     return is_empty;
 }
-bool Shape::Move(int _x, int _y, std::vector<std::vector<bool> > &play_ground){
+bool Shape::Move(int _x, int _y, bool play_ground[][200]){
     bool sucess = 1;
     x += _x;
     y += _y;
@@ -30,7 +30,7 @@ bool Shape::Move(int _x, int _y, std::vector<std::vector<bool> > &play_ground){
     }
     return sucess;
 }
-bool Shape::Change(std::vector<std::vector<bool> > &play_ground){
+bool Shape::Change(bool play_ground[][200]){
     bool sucess = 1;
     int status_before = status;
     status++;
@@ -38,7 +38,7 @@ bool Shape::Change(std::vector<std::vector<bool> > &play_ground){
     if (!Check(play_ground)) status = status_before, sucess = 0;
     return sucess;
 }
-bool Shape::Stick(std::vector<std::vector<bool> > &play_pool, std::vector<std::vector<Uint32> > &color_pool){
+bool Shape::Stick(bool play_pool[][200], Uint32 color_pool[][200]){
     bool sucess = 1;
     for (int i = 0; i < edge; i++)
         for (int j = 0; j < edge; j++)
