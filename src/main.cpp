@@ -223,6 +223,9 @@ int main( int, char ** ){
 					SDL_RenderClear(ui_renderer);
 					DrawBG_Selec();
 					std::stable_sort(USER, USER + 9, [](User a, User b){return a.best_score > b.best_score;});
+					for (int i = 0; i < 9; i++){
+						data_button[i].update(USER[i].name);
+					};
 					SDL_Color color = {0, 0, 0, 0xff};
 					for (int i = 0; i < 9; i++){
 						if (USER[i].name == "") continue;
