@@ -1,6 +1,0 @@
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/Block.dir
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/package.dir
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/package_source.dir
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/test.dir
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/edit_cache.dir
-/home/schelice/Code_Project/Block_clangd/build/CMakeFiles/rebuild_cache.dir

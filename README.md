@@ -1,2 +1,2 @@
-This is a simple example to build a small game via SDL2-lib.
-If you can read-only I will be very appriciate.
+# Introduce
+A simple block game with low performance using sdl2 lib is used to finish the homework. Maybe one day I will rebuild it.
